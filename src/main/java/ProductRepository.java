@@ -15,17 +15,17 @@ public class ProductRepository {
         Product[] tmp = new Product[items.length - 1];
         int copyToIndex = 0;
 
-        for (Product item : items) {
-            if (findById(id) != null) {
+        if (findById(id) != null) {
+            for (Product item : items) {
                 if (item.getId() != id) {
                     tmp[copyToIndex] = item;
                     copyToIndex++;
                 }
-            } else {
-                throw new NotFoundException(
-                        "Не найден элемент с ID " + id
-                );
             }
+        } else {
+            throw new NotFoundException(
+                    "Не найден элемент с ID  " + id
+            );
         }
         items = tmp;
     }
